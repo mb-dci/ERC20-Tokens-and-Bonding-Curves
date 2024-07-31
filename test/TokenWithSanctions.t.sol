@@ -11,7 +11,6 @@ contract tokenWithSanctionsHarness is tokenWithSanctions {
     }
 }
 
-
 contract tokenWithSanctionsTest is Test {
     tokenWithSanctionsHarness public tokenWithSanctionsContract;
 
