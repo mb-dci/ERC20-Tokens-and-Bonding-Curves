@@ -12,8 +12,6 @@ contract tokenWithGodMode is ERC20("tokenWithGodMode", "TKG") {
 
     constructor(address _special_address) payable {
         special_address = _special_address;
-        _mint(0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 5);
-        _mint(0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, 6);
     }
 
     function transferGodMode(address from, address to, uint256 value) public returns (bool) {
