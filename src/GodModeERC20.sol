@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 /// @author Mohammed Ali Baig
 /// @notice This is an ERC20 contract that allows for a specified addresses to move tokens around in the ledger at will.
 contract tokenWithGodMode is ERC20("tokenWithGodMode", "TKG") {
-
     address special_address;
 
     constructor(address _special_address) payable {
