@@ -11,7 +11,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 /// @custom:experimental This is an experimental contract.
 contract tokenWithSanctions is ERC20("tokenWithSanctions", "TKS") {
 
-    //address[] bannedAddresses;
     mapping (address => bool) bannedAddresses;
 
     constructor() {
