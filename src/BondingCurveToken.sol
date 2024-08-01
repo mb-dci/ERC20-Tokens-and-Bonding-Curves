@@ -3,10 +3,9 @@
 pragma solidity 0.8.26;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import {UD60x18, ud60x18, ud, convert} from "@prb/math@4.0.3/src/UD60x18.sol";
+import {UD60x18, ud60x18, ud, convert} from "@prb/math/src/UD60x18.sol";
 
-contract TokenSale is ERC20("TokenSale", "TKS") {
-
+contract BondingCurveToken is ERC20("TokenSale", "TKS") {
     event Log(UD60x18);
 
     function mint() public payable {
@@ -36,7 +35,6 @@ contract TokenSale is ERC20("TokenSale", "TKS") {
     //     UD60x18 updatedRareCoinSupply = (updatedEthBalance.mul(UD60x18.wrap(2))).sqrt();
     //     emit Log(updatedEthBalance);
 
-
     //     // Calculate amounts of new tokens to mint for user
     //     UD60x18 mintAmount = updatedRareCoinSupply - rareCoinSupply;
     //     emit Log(mintAmount);
@@ -45,17 +43,14 @@ contract TokenSale is ERC20("TokenSale", "TKS") {
     // }
 
     function normalCalc(uint256 amountPaid) public returns (uint256) {
-
         //uint256 totalSupply = getTotalSupply();
         //uint256 totalSupply = 0;  // 0 tokens minted so far
         UD60x18 totalSupply = ud60x18(1);
 
-
-        UD60x18 collateralBalance = totalSupply.powu(2).div(2);
+        UD60x18 collateralBalance = totalSupply.powu(2).div(ud60x18(2));
 
         UD60x18 tokensToBeMinted = ud60x18(2).mul(ud60x18(amountPaid).add(collateralBalance)).sqrt().sub(totalSupply);
 
-        return tokenstoBeMinted.intoUint256();
-
+        return tokensToBeMinted.intoUint256();
     }
 }
