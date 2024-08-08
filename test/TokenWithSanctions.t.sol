@@ -5,7 +5,7 @@ pragma solidity 0.8.24;
 import {Test, console} from "forge-std/Test.sol";
 import {tokenWithSanctions} from "../src/TokenWithSanctions.sol";
 
-contract tokenWithSanctionsHarness is tokenWithSanctions {
+contract tokenWithSanctionsHarness is tokenWithSanctions(0x17F6AD8Ef982297579C203069C1DbfFE4348c372) {
     function exposed_mint(address to, uint256 amount) external {
         return _mint(to, amount);
     }
@@ -24,6 +24,7 @@ contract tokenWithSanctionsTest is Test {
     }
 
     function testbanAddress() public {
+        vm.prank(0x17F6AD8Ef982297579C203069C1DbfFE4348c372);
         tokenWithSanctionsContract.banAddress(bannedAddress);
         vm.prank(regularAddress);
         vm.expectRevert();

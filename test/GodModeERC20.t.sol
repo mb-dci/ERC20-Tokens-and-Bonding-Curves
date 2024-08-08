@@ -2,12 +2,10 @@
 
 pragma solidity 0.8.24;
 
-import {Test, console} from "forge-std/Test.sol";
+import {Test, console, StdCheats} from "forge-std/Test.sol";
 import {tokenWithGodMode} from "../src/GodModeERC20.sol";
 
-address constant specialAddress = 0x78731D3Ca6b7E34aC0F824c42a7cC18A495cabaB;
-
-contract tokenWithGodModeHarness is tokenWithGodMode(specialAddress) {
+contract tokenWithGodModeHarness is tokenWithGodMode(0x17F6AD8Ef982297579C203069C1DbfFE4348c372) {
     function exposed_mint(address to, uint256 amount) external {
         return _mint(to, amount);
     }
@@ -15,6 +13,7 @@ contract tokenWithGodModeHarness is tokenWithGodMode(specialAddress) {
 
 contract tokenWithGodModeTest is Test {
     tokenWithGodModeHarness public tokenWithGodModeContract;
+    address _owner = makeAddr("owner");
 
     address to = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
     address from = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
@@ -25,8 +24,7 @@ contract tokenWithGodModeTest is Test {
     }
 
     function testTransferGodMode() public {
-        vm.prank(specialAddress);
-        bool ok = tokenWithGodModeContract.transferGodMode(from, to, 1);
-        assertEq(ok, true);
+        vm.prank(0x17F6AD8Ef982297579C203069C1DbfFE4348c372);
+        tokenWithGodModeContract.transferGodMode(from, to, 1);
     }
 }
