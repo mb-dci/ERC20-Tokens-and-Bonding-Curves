@@ -6,8 +6,6 @@ This repo contains a set of four Solidity smart contracts that make use of the E
 - [ ]  **Solidity contract 3:** ERC20 bonding curve token. The more tokens a user buys, the more expensive the token becomes.
 - [ ]  **Solidity contract 4:** Untrusted escrow. A contract where a buyer can put an arbitrary ERC20 token into a contract and a seller can withdraw it 3 days later.
 
-## Documentation
-
 ## Usage
 
 ### Build
